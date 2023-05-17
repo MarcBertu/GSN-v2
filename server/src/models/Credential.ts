@@ -28,7 +28,7 @@ const Credential = db.define('Credentials', {
             notNull: true,
         }
     },
-    typeUser: {
+    type: {
         type: DataTypes.SMALLINT,
         allowNull: false,
         validate: {
@@ -38,7 +38,8 @@ const Credential = db.define('Credentials', {
         }
     }
 }, {
-    timestamps: false
+    timestamps: false,
+    freezeTableName: true,
 })
 
 export default Credential;
