@@ -42,6 +42,7 @@ const Client = db.define('Client', {
         type: DataTypes.DECIMAL(10),
         allowNull: false,
         validate: {
+            isNumeric: true,
             notEmpty: true,
             notNull: true,
             len: [10,10]
@@ -51,6 +52,7 @@ const Client = db.define('Client', {
         type: DataTypes.DECIMAL(10),
         allowNull: false,
         validate: {
+            isNumeric: true,
             notEmpty: true,
             notNull: true,
             len: [10,10]
@@ -73,7 +75,8 @@ const Client = db.define('Client', {
         }
     },
 }, {
-    timestamps: false
+    timestamps: false,
+    freezeTableName: true,
 })
 
 export default Client;
