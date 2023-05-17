@@ -8,59 +8,55 @@ const Employee = db.define('Employee', {
         primaryKey: true,
         allowNull: false,
     },
-    mail: {
+    lastname: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
+        validate: {
+            notEmpty: true,
+            notNull: true,
+            len: [1,50]
+        }
+    },
+    firstname: {
+        type: DataTypes.STRING(50),
+        allowNull: false,
+        validate: {
+            notEmpty: true,
+            notNull: true,
+            len: [1,50]
+        }
+    },
+    birthDate: {
+        type: DataTypes.DATEONLY,
+        allowNull : false,
+        validate: {
+            notEmpty: true,
+            notNull: true,
+        }
+    },
+    email: {
         type: DataTypes.STRING(45),
         allowNull: false,
         unique: true,
         validate: {
             isEmail: true,
-            len: [5,45]
+            notEmpty: true,
+            notNull: true,
+            len: [1,45]
         }
     },
-    firstname: {
-        type: DataTypes.STRING,
-        allowNull : false,
-    },
-    lastname: {
-        type: DataTypes.STRING,
-        allowNull : false,
-    },
-    birthDate: {
-        type: DataTypes.DATEONLY,
-        allowNull : true,
-    },
-    telephone: {
+    phone: {
         type: DataTypes.NUMBER,
-        allowNull : true,
+        allowNull : false,
         validate: {
-            isNumeric: true
+            isNumeric: true,
+            notEmpty: true,
+            notNull: true,
         }
     },
-    fax: {
-        type: DataTypes.NUMBER,
-        allowNull : true,
-        validate: {
-            isNumeric: true
-        }
-    },
-    address: {
-        type: DataTypes.STRING,
-        allowNull : true,
-    },
-    siret: {
-        type: DataTypes.STRING,
-        allowNull : true,
-    },
-    siren: {
-        type: DataTypes.STRING,
-        allowNull : true,
-    },
-    numCompany: {
-        type: DataTypes.INTEGER,
-        allowNull : true,
-    }
 }, {
-    timestamps: false
+    timestamps: false,
+    freezeTableName: true,
 });
 
 export default Employee;
