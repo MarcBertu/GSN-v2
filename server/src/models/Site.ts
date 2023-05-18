@@ -28,7 +28,8 @@ const Site = db.define('Site', {
         },
     }
 }, {
-    timestamps: false
+    timestamps: false,
+    freezeTableName: true,
 });
 
 export default Site;
