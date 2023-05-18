@@ -3,13 +3,10 @@ import { type } from 'os';
 import Credential from '../models/Credential';
 import Employee from '../models/Employee';
 import Client from '../models/Client';
-import { log } from 'console';
 
 export const login = async (req: Request, rep: Response) => {
 
     const { mail, hashPassword } = req.body;
-
-    console.log(mail, hashPassword);
 
     Credential.findAll({
         where: {
@@ -37,9 +34,6 @@ export const login = async (req: Request, rep: Response) => {
                     }
                 })
                 .then( (model) => {
-
-                    log(model);
-
                     rep.json({
                         userType: typeUserInt,
                         data: model,
@@ -154,13 +148,123 @@ export const register = async (req: Request, rep: Response) => {
 
 export const unregister = (req: Request, rep: Response) => {
 
+    const {email, hashPassword, isAdmin} = req.body;
+
+    if(isAdmin) {        
+        Credential.findOne({
+            where: {
+                login: email,
+            }
+        })
+        .then((cred) => {
+            const userType = cred?.getDataValue("type");
+
+            if(userType == 1) {
+                Employee.destroy({
+                    where: {
+                        email: email,
+                    }
+                })
+                .then((result) => {
+                    cred?.destroy();
+                    rep.json({
+                        isAdmin: isAdmin,
+                        data: result,
+                    })
+                })
+                .catch((error) => {
+                    rep.status(400).json({
+                        error : error,
+                    })
+                });
+            }
+            else if(userType == 2) {
+                Client.destroy({
+                    where: {
+                        email: email,
+                    }
+                })
+                .then((result) => {
+                    cred?.destroy();
+                    rep.json({
+                        isAdmin: isAdmin,
+                        data: result,
+                    })
+                })
+                .catch((error) => {
+                    rep.status(400).json({
+                        error : error,
+                    })
+                });
+            }
+        })
+        .catch((error) => {
+            rep.status(400).json({
+                error: error
+            });
+        });
+    }
+    else{
+        Credential.findOne({
+            where: {
+                login: email,
+                hashPassword: hashPassword,
+            }
+        })
+        .then((cred) => {
+            const userType = cred?.getDataValue("type");
+
+            if(userType == 1) {
+                Employee.destroy({
+                    where: {
+                        email: email,
+                    }
+                })
+                .then((result) => {
+                    cred?.destroy();
+                    rep.json({
+                        isAdmin: isAdmin,
+                        data: result,
+                    })
+                })
+                .catch((error) => {
+                    rep.status(400).json({
+                        error : error,
+                    })
+                });
+            }
+            else if(userType == 2) {
+                Client.destroy({
+                    where: {
+                        email: email,
+                    }
+                })
+                .then((result) => {
+                    cred?.destroy();
+                    rep.json({
+                        isAdmin: isAdmin,
+                        data: result,
+                    })
+                })
+                .catch((error) => {
+                    rep.status(400).json({
+                        error : error,
+                    })
+                });
+            }
+        })
+        .catch((error) => {
+            rep.status(400).json({
+                error: error
+            });
+        });
+    }
+
 };
 
 export const checkEmail = (req: Request, rep: Response) => {
 
     const {email} = req.body;
-
-    log(email);
     
     Credential.findAll({
         where: {
