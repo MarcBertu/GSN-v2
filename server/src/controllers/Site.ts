@@ -1,6 +1,23 @@
 import { Request, Response } from "express";
 import Site from "../models/Site";
 import Client from "../models/Client";
+import { error } from "console";
+
+export const getAllSite = (req: Request, rep: Response) => {
+    
+    Site.findAll()
+    .then((result) => {
+        rep.json({
+            data: result,
+        })
+    })
+    .catch((error) => {
+        rep.status(400).json({
+            error: error,
+        })
+    });
+
+};
 
 export const addSite = (req: Request, rep: Response) => {
 
