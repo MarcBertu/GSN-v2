@@ -98,4 +98,30 @@ export const addTask = async (req: Request, rep: Response) => {
         })
     });
     
-}
+};
+
+export const deleteTask = (req: Request, rep: Response) => {
+
+    const {idTask} = req.body;
+
+    Task.findOne({
+        where: {
+            idTask: idTask,
+        }
+    })
+    .then((task) => {
+        if(task != null) {
+            task.destroy();
+            rep.status(202).send();
+        }
+        else {
+            rep.status(404).send();
+        }
+    })
+    .catch((error) => {
+        rep.status(400).json({
+            error: error,
+        });
+    });
+    
+};
