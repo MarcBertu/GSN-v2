@@ -3,6 +3,7 @@ import cors from 'cors';
 import routeCreds from '../routes/Credentials';
 import routeSite from '../routes/Site';
 import routeTask from '../routes/Task';
+import routeMail from '../routes/Mail';
 import db from '../db/connection'
 
 class Server {
@@ -35,6 +36,8 @@ class Server {
         })
 
         this.app.use('/credentials', routeCreds);
+
+        this.app.use('/mail', routeMail);
 
         this.app.use('/site', routeSite);
 
