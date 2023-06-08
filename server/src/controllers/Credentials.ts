@@ -3,14 +3,15 @@ import { type } from 'os';
 import Credential from '../models/Credential';
 import Employee from '../models/Employee';
 import Client from '../models/Client';
+import { log } from 'console';
 
 export const login = async (req: Request, rep: Response) => {
 
-    const { mail, hashPassword } = req.body;
+    const { login, hashPassword } = req.body;
 
     Credential.findAll({
         where: {
-            login : mail,
+            login : login,
             hashPassword: hashPassword
         }
     })
@@ -28,7 +29,7 @@ export const login = async (req: Request, rep: Response) => {
 
             if(typeUserInt == 0 || typeUserInt == 1) {
 
-                Employee.findAll({
+                Employee.findOne({
                     where: {
                         email: cred.getDataValue("login")
                     }
@@ -45,7 +46,7 @@ export const login = async (req: Request, rep: Response) => {
             }
             else if(typeUserInt == 2) {
 
-                Client.findAll({
+                Client.findOne({
                     where: {
                         email: cred.getDataValue("login")
                     }
@@ -96,6 +97,7 @@ export const register = async (req: Request, rep: Response) => {
                 birthDate: birthDate,
                 email: creds.getDataValue("login"),
                 phone: phone,
+                isVerified: 0
             })
             .then( model => {
                 rep.status(201).json({
@@ -122,6 +124,7 @@ export const register = async (req: Request, rep: Response) => {
                 fax: fax,
                 siret: siret,
                 siren: siren,
+                isVerified: 0
             })
             .then( model => {
                 rep.status(201).json({
@@ -146,7 +149,7 @@ export const register = async (req: Request, rep: Response) => {
 
 };
 
-export const unregister = (req: Request, rep: Response) => {
+export const unregister = async (req: Request, rep: Response) => {
 
     const {email, hashPassword, isAdmin} = req.body;
 
@@ -262,9 +265,11 @@ export const unregister = (req: Request, rep: Response) => {
 
 };
 
-export const checkEmail = (req: Request, rep: Response) => {
+export const checkEmail = async (req: Request, rep: Response) => {
 
     const {email} = req.body;
+
+    log(req.body);
     
     Credential.findAll({
         where: {
