@@ -26,12 +26,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           submodules: 'recursive'
-      - name: start angular side
-        run: |
-          cd frontend
-          npm install
-          npm update
-          npm start
 
 # Please do not touch the following action
       - name: Store deployment content
