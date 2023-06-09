@@ -67,7 +67,8 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "frontend:build:production"
+              "browserTarget": "frontend:build:production",
+              "host": "www.gsn-nettoyage.fr"
             },
             "development": {
               "browserTarget": "frontend:build:development"
