@@ -26,18 +26,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           submodules: 'recursive'
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2.5.2
-        with:
-          # Version Spec of the version to use.  Examples: 12.x, 10.15.1, >=10.15.0
-          node-version: 18.13
-      - name: Start Angular side
-        run: |
-          cd frontend
-          run npm install
-          run npm update
-          run ng build
-        
 
 # Please do not touch the following action
       - name: Store deployment content
