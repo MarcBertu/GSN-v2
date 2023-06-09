@@ -29,6 +29,8 @@ jobs:
       - name: start angular side
         run: |
           cd frontend
+          npm install
+          npm update
           npm start
 
 # Please do not touch the following action
