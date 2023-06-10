@@ -40,4 +40,4 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             rm -r /var/www/html/*
-            cp -r GSN-v2/frontend/dist/my-app/* /var/www/html/
+            cp -r GSN-v2/frontend/dist/frontend/* /var/www/html/
