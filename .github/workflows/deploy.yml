@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
+      - prod
 
 jobs:
   deploy:
@@ -26,9 +26,9 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd GSN-v2
+            cd GSN-v2/frontend
             npm install
-            git pull origin main
+            git pull origin prod
             npm run build:prod
             
       - name: Copy compiled directory to SSH server
@@ -40,4 +40,4 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             rm /var/www/html/*
-            cp -r GSN-v2/dist/my-app/* /var/www/html/
+            cp -r GSN-v2/frontend/dist/my-app/* /var/www/html/
