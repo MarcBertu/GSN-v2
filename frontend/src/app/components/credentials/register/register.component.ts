@@ -101,9 +101,6 @@ export class RegisterComponent implements OnInit {
     this._credService.checkEmail(email.value).subscribe({
       next: (result) => {
 
-        console.log(email, result);
-        
-
         if(result == false) {
           this._snackbarRef.open("Cette adresse mail est déjà utilisé ! Vous possèdez peut être déjà un compte ?", "Ok");
         }
@@ -112,8 +109,7 @@ export class RegisterComponent implements OnInit {
         }
       },
       error: (error) => {
-        console.log(error);
-        
+        this._snackbarRef.open("Une erreur est survenue lors de la vérification de votre adresse mail !", "Ok");
       },
     })
   }
@@ -173,21 +169,22 @@ export class RegisterComponent implements OnInit {
 
       this._credService.register(json).subscribe({
         next: (result) => {
-          console.log(result);
-
           this._snackbarRef.open("Votre inscription à bien était pris en compte !", "J'ai compris").afterDismissed().subscribe({
             next: () => this._router.navigate(['/login'])
           })
           
         },
         error: (error) => {
-          console.log(error);
-          
+          this._snackbarRef.open("Une erreur est survenue lors de votre inscription !", "J'ai compris");
         }
       })
     }
 
     
+  }
+
+  redirectLogin() {
+    this._router.navigate(['/login']);
   }
 
 }

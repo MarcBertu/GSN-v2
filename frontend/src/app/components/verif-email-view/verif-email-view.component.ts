@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { error } from 'console';
 import { EmailService } from 'src/app/services/email.service';
 
 @Component({
@@ -20,10 +19,6 @@ export class VerifEmailViewComponent implements OnInit {
 
   ngOnInit(): void {
     this._route.queryParams.subscribe( params => {
-
-      console.log(params);
-      
-
       this.id = params['id'];
       this.userType = params['type'];
     });
@@ -34,10 +29,10 @@ export class VerifEmailViewComponent implements OnInit {
   updateUserStatut() {
     this._emailService.verifEmail(this.id, this.userType).subscribe({
       next: () => {
-        console.log("Vérification réussi");
+        alert("Votre compte a été validé avec succès !");
       },
       error: (error) => {
-        console.log(error);
+        alert("Une erreur est survenue lors de la validation de votre compte.");
       }
     });
   }

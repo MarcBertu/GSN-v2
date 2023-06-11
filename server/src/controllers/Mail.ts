@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { Mail } from "../interfaces/mail";
-import { error, log } from "console";
 import Employee from "../models/Employee";
 import Client from "../models/Client";
 const nodemailer = require('nodemailer');

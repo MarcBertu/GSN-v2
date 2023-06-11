@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import { type } from 'os';
 import Task  from '../models/Task';
-import { error, log } from 'console';
 import { col, fn } from 'sequelize';
 import Employee from '../models/Employee';
 import Site from '../models/Site';

@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import Site from "../models/Site";
 import Client from "../models/Client";
-import { error } from "console";
 
 export const getAllSite = (req: Request, rep: Response) => {
     
