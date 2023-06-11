@@ -9,9 +9,7 @@ import { Employee } from 'src/app/interfaces/employee';
 import { Users } from 'src/app/interfaces/users';
 import { Utils } from 'src/app/model/utils';
 import { CredentialsService } from 'src/app/services/credentials.service';
-import { VerifEmailDialogComponent } from '../../verif-email-dialog/verif-email-dialog.component';
 import { EmailService } from 'src/app/services/email.service';
-import { error } from 'console';
 
 @Component({
   selector: 'app-login',
@@ -43,10 +41,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-
-    console.log(this.f);
-    
-
+  
     const cred : Credentials = {
       idCredentials : undefined,
       login: this.f['email'].value,
@@ -56,8 +51,6 @@ export class LoginComponent implements OnInit {
 
     this._credService.login(cred).subscribe({
       next: (result : any) => {
-
-        console.log(result);
 
         const type : number = result.userType;
         var data : Object = result.data;
@@ -108,7 +101,6 @@ export class LoginComponent implements OnInit {
             next: () => {
               this.snackbarRef.open("Un email vient de vous être envoyé pensez à vérifier votre boîte mail !", "J'ai compris");
             },
-            error: (error) => console.log(error)
           })
         }
         else if(user.isVerified == -1) {
@@ -124,10 +116,13 @@ export class LoginComponent implements OnInit {
 
       },
       error : (error) => {
-        console.log(error);
-        
+        this.snackbarRef.open("Erreur lors de la connexion !", "J'ai compris");
       },
     })
+  }
+
+  redirectRegister() {
+    this._router.navigate(['/register']);
   }
 
 }

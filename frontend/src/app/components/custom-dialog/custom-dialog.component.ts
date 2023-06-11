@@ -29,7 +29,6 @@ export class CustomDialogComponent {
   submit() {
     this._taskService.addTask(this.task).subscribe({
       next: (result) => { 
-        console.log(result); 
         this._snackbarRef.open("Tâche ajouté avec succès !", "", {
           duration: 1500
         });
@@ -37,7 +36,6 @@ export class CustomDialogComponent {
         this._dialogRef.close();
       },
       error: (error) => {
-        console.log(error);
         this._snackbarRef.open("Un problème est apparu lors de l'ajout de la tâche !", "", {
           duration: 2000
         });

@@ -74,7 +74,7 @@ export class PlanningComponent implements OnInit {
         });
       },
       error: (error) => {
-        console.log(error);
+        alert("Une erreur est survenue lors de la récupération des tâches !");
       }
     });
   }

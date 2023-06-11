@@ -3,7 +3,6 @@ import { type } from 'os';
 import Credential from '../models/Credential';
 import Employee from '../models/Employee';
 import Client from '../models/Client';
-import { log } from 'console';
 
 export const login = async (req: Request, rep: Response) => {
 
@@ -268,8 +267,6 @@ export const unregister = async (req: Request, rep: Response) => {
 export const checkEmail = async (req: Request, rep: Response) => {
 
     const {email} = req.body;
-
-    log(req.body);
     
     Credential.findAll({
         where: {

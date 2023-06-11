@@ -14,10 +14,7 @@ export class Task {
         date : string,
         heureDebut : number,
         heureFin : number
-    ) {
-
-        console.log(label, employee);
-        
+    ) { 
         this.label = label;
         this.employee = employee;
         this.date = new Date(date);

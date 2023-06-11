@@ -25,6 +25,8 @@ import { RegisterComponent } from './components/credentials/register/register.co
 import { MainComponent } from './components/main/main.component';
 import { VerifEmailDialogComponent } from './components/verif-email-dialog/verif-email-dialog.component';
 import { VerifEmailViewComponent } from './components/verif-email-view/verif-email-view.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 
 @NgModule({
@@ -56,7 +58,8 @@ import { VerifEmailViewComponent } from './components/verif-email-view/verif-ema
     MatDialogModule,
     MatSnackBarModule,
     MatInputModule,
-    
+    RouterTestingModule,
+    HttpClientTestingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
