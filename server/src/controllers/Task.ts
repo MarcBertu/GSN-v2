@@ -7,41 +7,128 @@ import Site from '../models/Site';
 
 export const getAllTasks = async (req: Request, rep: Response) => {
 
-    Task.findAll({
-        attributes: {
-            include: [
-                "idTask",
-                "label",
-                "description",
-                "date",
-                [
-                    fn
-                    (
-                      "DATE_FORMAT", 
-                      col("heureDeb"), 
-                      "%d-%m-%Y %H:%i:%s"
-                    ),
-                    "heureDeb",
-                ],
-                [
-                    fn
-                    (
-                      "DATE_FORMAT", 
-                      col("heureFin"), 
-                      "%d-%m-%Y %H:%i:%s"
-                    ),
-                    "heureFin",
-                ],
-            ]
-        }
-    })
-    .then( data => {
-        rep.json(data);
-    })
-    .catch( error => {
-        rep.status(404).json(error);
-    });
+    const { typeUser, idUser } = req.body;
 
+    if(typeUser == 1) {
+        Task.findAll({
+            where: {
+                idEmployee: idUser,
+            },
+            attributes: {
+                include: [
+                    "idTask",
+                    "label",
+                    "description",
+                    "date",
+                    [
+                        fn
+                        (
+                          "DATE_FORMAT", 
+                          col("heureDeb"), 
+                          "%d-%m-%Y %H:%i:%s"
+                        ),
+                        "heureDeb",
+                    ],
+                    [
+                        fn
+                        (
+                          "DATE_FORMAT", 
+                          col("heureFin"), 
+                          "%d-%m-%Y %H:%i:%s"
+                        ),
+                        "heureFin",
+                    ],
+                ]
+            }
+        })
+        .then( data => {
+            rep.json(data);
+        })
+        .catch( error => {
+            rep.status(404).json(error);
+        });
+    
+    }
+
+    else if(typeUser == 2) {
+        Task.findAll({
+            where: {
+                idClient: idUser,
+            },
+            attributes: {
+                include: [
+                    "idTask",
+                    "label",
+                    "description",
+                    "date",
+                    [
+                        fn
+                        (
+                          "DATE_FORMAT", 
+                          col("heureDeb"), 
+                          "%d-%m-%Y %H:%i:%s"
+                        ),
+                        "heureDeb",
+                    ],
+                    [
+                        fn
+                        (
+                          "DATE_FORMAT", 
+                          col("heureFin"), 
+                          "%d-%m-%Y %H:%i:%s"
+                        ),
+                        "heureFin",
+                    ],
+                ]
+            }
+        })
+        .then( data => {
+            rep.json(data);
+        })
+        .catch( error => {
+            rep.status(404).json(error);
+        });
+    
+    }
+
+    else {
+        Task.findAll({
+            attributes: {
+                include: [
+                    "idTask",
+                    "label",
+                    "description",
+                    "date",
+                    [
+                        fn
+                        (
+                          "DATE_FORMAT", 
+                          col("heureDeb"), 
+                          "%d-%m-%Y %H:%i:%s"
+                        ),
+                        "heureDeb",
+                    ],
+                    [
+                        fn
+                        (
+                          "DATE_FORMAT", 
+                          col("heureFin"), 
+                          "%d-%m-%Y %H:%i:%s"
+                        ),
+                        "heureFin",
+                    ],
+                ]
+            }
+        })
+        .then( data => {
+            rep.json(data);
+        })
+        .catch( error => {
+            rep.status(404).json(error);
+        });
+    }
+
+    
 };
 
 export const addTask = async (req: Request, rep: Response) => {

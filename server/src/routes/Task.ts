@@ -3,7 +3,7 @@ import { getAllTasks, addTask, deleteTask } from '../controllers/Task';
 
 const router = Router();
 
-router.get('/getAll', getAllTasks);
+router.post('/getAll', getAllTasks);
 
 router.post('/addTask', addTask);
 

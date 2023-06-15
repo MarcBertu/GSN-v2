@@ -1,0 +1,71 @@
+<button (click)="disconnect()" class="p-2 bg-red-500 m-2 rounded text-white ">Se déconnecter</button>
+
+<div class="px-3">
+    <h1 class="text-3xl font-bold">Gestion</h1>
+    <div class="space-x-2">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="showClient()">Client</button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="showEmployee()">Employé</button>
+        <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded" (click)="getWaitingList()">En attente</button>
+        <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded self-end" (click)="showClient()">Ajouter un élément</button>
+    </div>
+
+</div>
+<div class="flex flex-grow flex-col space-y-56">
+
+    <div class="flex flex-grow flex-col">
+        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+            <div class="overflow-hidden">
+              <table class="min-w-full text-left text-sm font-light">
+                <thead
+                  class="border-b bg-white font-medium dark:border-neutral-500 dark:bg-neutral-600">
+                  <tr>
+                    <th scope="col" class="px-6 py-4">#</th>
+                    <th scope="col" class="px-6 py-4">First</th>
+                    <th scope="col" class="px-6 py-4">Last</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    class="border-b bg-neutral-100 dark:border-neutral-500 dark:bg-neutral-700 group" *ngFor="let item of liste; let i = index">
+                    <td class="whitespace-nowrap px-6 py-4 font-medium">{{i}}</td>
+                    <td class="whitespace-nowrap px-6 py-4">{{item.firstname}}</td>
+                    <td class="whitespace-nowrap px-6 py-4">{{item.lastname }}</td>
+                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" (click)="showClient()">Delete</button>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="flex flex-grow flex-col">
+        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+            <div class="overflow-hidden">
+              <table class="min-w-full text-left text-sm font-light">
+                <thead
+                  class="border-b bg-white font-medium dark:border-neutral-500 dark:bg-neutral-600">
+                  <tr>
+                    <th scope="col" class="px-6 py-4">#</th>
+                    <th scope="col" class="px-6 py-4">Email</th>
+                    <th scope="col" class="px-6 py-4">Type utilisateur</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    class="border-b bg-neutral-100 dark:border-neutral-500 dark:bg-neutral-700 group" *ngFor="let item of candidates; let i = index">
+                    <td class="whitespace-nowrap px-6 py-4 font-medium">{{i}}</td>
+                    <td class="whitespace-nowrap px-6 py-4">{{item.login}}</td>
+                    <td class="whitespace-nowrap px-6 py-4">{{item.type == 1 ? "Client" : "Employée" }}</td>
+                    <button class="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded" (click)="allowUser(item)">Allow</button>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+</div>
