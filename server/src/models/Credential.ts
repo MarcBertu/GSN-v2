@@ -36,7 +36,16 @@ const Credential = db.define('Credentials', {
             notNull: true,
             len: [1,1],
         }
-    }
+    },
+    isVerified: {
+        type: DataTypes.NUMBER,
+        allowNull: false,
+        validate: {
+            isNumeric: true,
+            notEmpty: true,
+            notNull: true
+        }
+    },
 }, {
     timestamps: false,
     freezeTableName: true,

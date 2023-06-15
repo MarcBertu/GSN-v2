@@ -74,15 +74,6 @@ const Client = db.define('Client', {
             notNull: true,
         }
     },
-    isVerified: {
-        type: DataTypes.NUMBER,
-        allowNull: false,
-        validate: {
-            isNumeric: true,
-            notEmpty: true,
-            notNull: true
-        }
-    },
 }, {
     timestamps: false,
     freezeTableName: true,

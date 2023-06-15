@@ -1,7 +1,0 @@
-white : #ffffff
-belge : #fff6d8
-cyan : #99e6d8
-marron-teinte 1 : #ac8887
-marron-teinte 2 : #613a3a
-marron-teinte 3 : #402020
-black : #000000

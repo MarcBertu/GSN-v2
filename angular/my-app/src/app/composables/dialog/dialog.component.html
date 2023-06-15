@@ -1,0 +1,54 @@
+<h2 mat-dialog-title>Ajouter une tâche</h2>
+
+    <mat-dialog-content>
+
+        <div class="flex flex-col gap-5">
+
+            <div>
+                <label for="label">Nom de la tâche:</label>
+                <input id="label" matInput type="text" placeholder="Entretien" required>
+            </div>
+        
+            <div>
+                <label for="description">Description:</label>
+                <input id="description" matInput type="text" placeholder="Entretien" >
+            </div>
+        
+            <div>
+                <label for="date">Date:</label>
+                <input id="date" matInput type="date" placeholder="Entretien"  required>
+            </div>
+        
+            <div>
+                <label for="heureDeb">Heure de début de la tâche:</label>
+            <input id="heureDeb" matInput type="datetime-local" placeholder="Entretien"  required>
+            </div>
+        
+            <div>
+                <label for="heureFin">Heure de fin de la tâche:</label>
+                <input id="heureFin" matInput type="datetime-local" placeholder="Entretien"  required>
+            </div>
+        
+            <div>
+                <label for="employee">Employée:</label>
+                <input id="employee" matInput type="text" placeholder="Entretien" required>
+            </div>
+        
+            <div>
+                <label for="client">Client:</label>
+                <input id="client" matInput type="text" placeholder="Entretien"  required>
+            </div>
+        
+            <div>
+                <label for="site">Site:</label>
+                <input id="site" matInput type="text" placeholder="Entretien" required>
+            </div>
+
+        </div>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button id="close" mat-dialog-close mat-button class="bg-slate-300 p-3 m-2 text-slate-700 rounded-md"> Fermer </button>
+        <button id="confirm" mat-button class="bg-blue-600 p-3 m-2 text-white rounded-md"> Ajouter une tâche </button>
+    </mat-dialog-actions>

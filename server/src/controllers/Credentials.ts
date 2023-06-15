@@ -3,8 +3,27 @@ import { type } from 'os';
 import Credential from '../models/Credential';
 import Employee from '../models/Employee';
 import Client from '../models/Client';
+import { log } from 'console';
+
+export const getAllUsers = async (req: Request, rep: Response) => {
+
+    Credential.findAll({
+        where: {
+            isVerified: -1,
+        }
+    })
+    .then( data => {
+        rep.json(data);
+    })
+    .catch( error => {
+        rep.status(400).json(error);
+    });
+
+};
 
 export const login = async (req: Request, rep: Response) => {
+    
+    console.log("Ici");
 
     const { login, hashPassword } = req.body;
 
@@ -284,4 +303,29 @@ export const checkEmail = async (req: Request, rep: Response) => {
         rep.status(400).json(error);
     })
 
+};
+
+export const allowUser = async (req: Request, rep: Response) => {
+
+    const {email} = req.body;
+
+    Credential.findOne({
+        where: {
+            login: email,
+        }
+    })
+    .then( (cred) => {
+        cred?.update({
+            isVerified: 1,
+        })
+        .then( (result) => {
+            rep.status(200).send();
+        })
+        .catch( (error) => {
+            rep.status(400).json(error);
+        })
+    })
+    .catch( (error) => {
+        rep.status(400).json(error);
+    });
 };
