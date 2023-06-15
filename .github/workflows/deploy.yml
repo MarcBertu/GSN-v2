@@ -40,7 +40,7 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cp -r GSN-v2/angular/dist/my-app/* /var/www/html/app/
+            cp -r GSN-v2/angular/my-app/dist/my-app/* /var/www/html/app/
 
       - name: Build frontend
         uses: appleboy/ssh-action@master
