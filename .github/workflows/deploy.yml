@@ -40,7 +40,6 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            rm -r /var/www/html/app/*
             cp -r GSN-v2/angular/dist/my-app/* /var/www/html/app/
 
       - name: Build frontend
@@ -63,5 +62,4 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            rm -r /var/www/html/server/*
             cp -r GSN-v2/server/dist/* /var/www/html/server/
